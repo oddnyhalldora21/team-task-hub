@@ -88,7 +88,7 @@ export function Form() {
             {!values.email ? (
                 <Card className="w-3/4 max-w-7xl bg-gray-300">
                     <CardHeader>
-                        <CardTitle className="text-white">Please enter your email to continue</CardTitle>
+                        <CardTitle className="text-gray-500">Please enter your email to continue</CardTitle>
                     </CardHeader>
                     <FieldSet>
                         <FieldGroup>
