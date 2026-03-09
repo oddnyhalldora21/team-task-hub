@@ -8,9 +8,9 @@ function App() {
   const [state, setState] = useState(true)
   return (
     <div className="w-full justify-center">
-      <button onClick={() => {
-        setState(s => !s)
-      }}>Click</button>
+     <button onClick={() => setState(s => !s)} className="border border-black px-4 py-2 rounded">
+  Click
+</button>
       {/* <ShopCard />
       <ShopCard /> */}
       {state &&

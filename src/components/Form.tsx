@@ -86,7 +86,7 @@ export function Form() {
         
             <div className="flex flex-col items-center">
             {!values.email ? (
-                <Card className="w-3/4 max-w-7xl bg-blue-950">
+                <Card className="w-3/4 max-w-7xl bg-gray-300">
                     <CardHeader>
                         <CardTitle className="text-white">Please enter your email to continue</CardTitle>
                     </CardHeader>
@@ -107,7 +107,7 @@ export function Form() {
                 </Card>
             ) : (
                 <>
-                    <Card className="w-3/4 max-w-7xl bg-blue-950">
+                    <Card className="w-3/4 max-w-7xl bg-gray-300">
                         <CardHeader>
                             <div className="flex items-center gap-2">
                                 <div className="grow border h-0"></div>
@@ -214,14 +214,14 @@ export function Form() {
                                     <CardTitle className="text-white">or</CardTitle>
                                     <div className="grow border h-0"></div>
                                 </div>
-                                <Button value="Clear" type="submit" className="bg-black p-4 rounded text-white uppercase border-pink-500 border" />                            </div>
+                                <Button value="Clear" type="submit" className="bg-gray-500 p-4 rounded text-white uppercase border-gray-500 border" />                            </div>
                         </form>
                     </Card>
-                    <Card className="my-4 w-3/4 max-w-7xl">
+                    <Card className="my-4 w-3/4 max-w-7xl bg-gray-300">
                         <CardHeader>
                             <div>
-                                <div className="grow border h-0"></div>
-                                <CardTitle>Already filled out form?</CardTitle>
+                                <div className="grow border h-0 "></div>
+                                <CardTitle className="text-white">Already filled out form?</CardTitle>
                                 <div className="grow border h-0"></div>
                             </div>
                         </CardHeader>
@@ -247,8 +247,8 @@ export function Form() {
                                 </FieldGroup>
                             </FieldSet>
                             <div className="flex flex-col py-4 gap-4">
-                            <Button value="Load" type="submit" className="bg-pink-500 p-4 rounded text-black uppercase" />
-                            <Button value="Create New" type="submit" className="bg-green-500 p-4 rounded text-black uppercase" />                            </div>
+                            <Button value="Load" type="submit" className="bg-pink-500 p-4 rounded text-white uppercase" />
+                            <Button value="Create New" type="submit" className="bg-gray-500 p-4 rounded text-white uppercase" />                            </div>
                         </form>
                     </Card>
                 </>
