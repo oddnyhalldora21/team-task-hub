@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { ShoppingBag, ShoppingCart } from 'lucide-react';
-import { useCart } from '@/features/cart/context/CartContext';
+import { useAppStore } from '@/store/AppStore';
 import { cn } from '@/shared/lib/utils';
 
 export function NavBar() {
-  const { items } = useCart();
+  const { items } = useAppStore();
   const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
