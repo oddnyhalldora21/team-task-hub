@@ -1,4 +1,4 @@
-import type { Product } from "./product.js";
+import type { Product } from "../products/product.js";
 
 export type CartItem = {
   product: Product;

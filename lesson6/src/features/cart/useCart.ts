@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getCart, saveCart } from "@/services/cartService.js";
-import type { CartItem } from "@/types/cart.js";
-import type { Product } from "@/types/product.js";
+import { getCart, saveCart } from "@/features/cart/cartService.js";
+import type { CartItem } from "@/features/cart/cart.js";
+import type { Product } from "@/features/products/product.js";
 
 export function useCart() {
   const [items, setItems] = useState<CartItem[]>([]);

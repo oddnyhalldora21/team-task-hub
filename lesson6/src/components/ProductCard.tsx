@@ -1,4 +1,4 @@
-import type { Product } from "@/types/product.js";
+import type { Product } from "@/features/products/product.js";
 import { formatPrice } from "@/utils/formatPrice.js";
 import { Button } from "./Button.js";
 

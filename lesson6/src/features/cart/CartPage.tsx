@@ -1,4 +1,4 @@
-import { useCart } from "@/hooks/useCart.js";
+import { useCart } from "@/features/cart/useCart.js";
 import { CartSummary } from "@/components/CartSummary.js";
 
 export function CartPage() {
