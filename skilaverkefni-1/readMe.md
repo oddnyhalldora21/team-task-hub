@@ -1,100 +1,73 @@
-# Team Task Hub – React Verkefni
+# React + TypeScript + Vite
 
-## Kröfur
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Búðu til **React + TypeScript** app sem heitir **Team Task Hub** þar sem notendur geta unnið með **projects** og **tasks**.
+Currently, two official plugins are available:
 
-### Virkni:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-- Skoða öll project
-- Búa til nýtt project
-- Velja project og sjá tilheyrandi task
-- Bæta við task
-- Breyta task
-- Eyða task
-- Merkja "task" sem lokið / ólokið
-- Leita í "tasks"
-- Sía eftir stöðu / forgangi
-- Sýna einfalt dashboard með tölfræði
+## React Compiler
 
-### Gögn og validation
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- Gögn skulu vistast í **localStorage**
-- Notaðu **Zod** fyrir form validation
-- Gögn (projects og tasks) skulu vera **tryggð með typed parsing** þegar þau eru lesin úr localStorage
-- Gögn skulu **haldast eftir refresh**
+## Expanding the ESLint configuration
 
----
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## State management
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-- **Global state** á að nota fyrir:
-  - **projects**
-  - **tasks**
-  - **aðgerðir á þeim** (add, update, delete, toggle complete)
-- Nemendur geta valið **annaðhvort**:
-  - **Context API + `useReducer`**
-  - **External state management** (t.d. Zustand)
-- Önnur UI state (modal, search, filters, input values) má geyma sem **local state** í componentum eða custom hooks.
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
----
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-## Tæknikröfur
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- React functional components
-- TypeScript (**ekki nota `any`**)
-- Component library (MUI, Chakra, shadcn/ui, Ant Design)
-- Hooks (t.d. `useMemo`, `useCallback`, `useRef`)
-- Að minnsta kosti 3 custom hooks:
-  - `useLocalStorage`
-  - `useTaskFilters`
-  - einn hook að eigin vali
-- Skýrt og skipulagt project architecture
-- Endurnýtanlegir components
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
----
-
-## Reglur og skil
-
-- Minst **8 Git commits**
-- Link af repo'inu og myndband sem sýnir fram á virkni
-
----
-
-# Námsmat (100 stig)
-
-## 1. Virkni – 30 stig
-
-- Projects virka rétt: **10**
-- Tasks virka rétt: **10**
-- Leit og síur virka: **5**
-- Dashboard tölfræði virkar: **5**
-
-## 2. Component design – 20 stig
-
-- Endurnýtanlegir components: **8**
-- Typed props og composition: **6**
-- Skýr skipting á componentum: **6**
-
-## 3. Hooks og custom hooks – 20 stig
-
-- Advanced hooks notaðir rétt: **8**
-- Custom hooks notaðir rétt: **8**
-- `useLocalStorage` og filter/search hook til staðar: **4**
-
-## 4. State management – 10 stig
-
-- Projects, tasks og aðgerðir eru í global state: **6**
-- Skýr og rökrétt uppbygging á global state: **4**
-
-## 5. localStorage + Zod – 10 stig
-
-- Gögn haldast eftir refresh: **4**
-- Typed localStorage logic eða custom hook: **3**
-- Zod form validation rétt notað: **3**
-
-## 6. Kóðagæði og skipulag – 10 stig
-
-- Góð mappaskipan: **5**
-- TypeScript notað rétt og kóðinn læsilegur: **5**
-
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
