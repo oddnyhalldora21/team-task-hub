@@ -1,4 +1,5 @@
-import type { LinksFunction } from '@remix-run/node';
+import type { LinksFunction } from "@remix-run/node";
+import { ThemeProvider } from './context/ThemeContext';
 import {
   Links,
   Meta,
@@ -6,10 +7,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import { createContext, useContext, useState } from 'react';
 
-type Theme = 'light' | 'dark';
-export const ThemeContext = createContext<Theme | null>(null);
+
 
 import appStyles from './app.css?url';
 
@@ -28,7 +27,7 @@ export function meta() {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState<Theme>('light');
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -38,12 +37,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <ThemeContext.Provider value={{ theme, setTheme }}>
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-        </ThemeContext.Provider>
-      </body>
-    </html>
+      <ThemeProvider>
+       <Outlet />
+      </ThemeProvider>
+      <ScrollRestoration />
+      <Scripts />
+       </body>
+    </html>   
   );
 }

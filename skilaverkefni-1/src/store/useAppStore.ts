@@ -13,8 +13,8 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>()((set) => ({
-  projects: [],
-  tasks: [],
+  projects: JSON.parse(localStorage.getItem('projects') ?? '[]'),
+  tasks: JSON.parse(localStorage.getItem('tasks') ?? '[]'),
 
   addProject: (project) =>
     set((state) => ({ projects: [...state.projects, project] })),

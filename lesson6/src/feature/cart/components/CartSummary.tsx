@@ -1,7 +1,6 @@
 import type { CartItem } from '@cart/types/cart';
 import { formatPrice } from '@shared/utils/formatPrice';
 import { Button } from '@shared/components/Button';
-
 type CartSummaryProps = {
   items: CartItem[];
   onRemove: (productId: string) => void;
