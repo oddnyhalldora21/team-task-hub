@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
 import { useAppStore } from '@/store/useAppStore'
+import { useProjectStats } from '@/hooks/useProjectStats'
 
 export function Dashboard() {
   const projects = useAppStore((s) => s.projects)
   const tasks = useAppStore((s) => s.tasks)
+  const projectStats = useProjectStats(projects, tasks)
 
   const stats = useMemo(() => {
     const total = tasks.length
@@ -58,7 +60,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      <div className="bg-white border rounded-lg p-4">
+      <div className="bg-white border rounded-lg p-4 mb-4">
         <p className="font-medium mb-3">By Priority</p>
         <div className="flex flex-col gap-2">
           <div className="flex justify-between text-sm">
@@ -73,6 +75,29 @@ export function Dashboard() {
             <span className="text-green-500">Low</span>
             <span className="font-medium">{stats.low}</span>
           </div>
+        </div>
+      </div>
+
+      <div className="bg-white border rounded-lg p-4">
+        <p className="font-medium mb-3">Per Project</p>
+        {projectStats.length === 0 && (
+          <p className="text-sm text-gray-500">No projects yet.</p>
+        )}
+        <div className="flex flex-col gap-3">
+          {projectStats.map(({ project, total, completed, completion }) => (
+            <div key={project.id} className="flex flex-col gap-1">
+              <div className="flex justify-between text-sm">
+                <span className="font-medium">{project.name}</span>
+                <span className="text-gray-500">{completed}/{total} tasks · {completion}%</span>
+              </div>
+              <div className="w-full bg-gray-100 rounded-full h-2">
+                <div
+                  className="bg-black h-2 rounded-full"
+                  style={{ width: `${completion}%` }}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
